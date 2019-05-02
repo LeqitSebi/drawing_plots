@@ -4,44 +4,39 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class command_execution {
 
-    public static void main(String[] args) {
-        System.out.println(get_logs());
-    }
 
-    public static String get_logs() {
+    public static ArrayList<String> get_logs() {
         ProcessBuilder processBuilder = new ProcessBuilder();
         processBuilder.command("bash", "-c", "cd src/ && git log");
         try {
 
             Process process = processBuilder.start();
 
-            StringBuilder output = new StringBuilder();
-
+            ArrayList<String> loglines = new ArrayList<>();
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(process.getInputStream()));
 
             String line;
-            while ((line = reader.readLine()) != null) {
-                output.append(line + "\n");
+            while ((line = reader.readLine()) != null){
+                loglines.add(line);
+//                System.out.println(loglines);
             }
 
             int exitVal = process.waitFor();
             if (exitVal == 0) {
                 System.out.println("Success!");
-                System.out.println(output);
-                System.exit(0);
+                return loglines;
+//                System.exit(0);
             } else {
                 //abnormal...
             }
-            return String.valueOf(output);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        return "failed to execute";
+        return null;
     }
 }

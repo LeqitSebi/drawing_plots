@@ -39,20 +39,21 @@ public class commit_graph extends ApplicationFrame {
         final DefaultCategoryDataset dataset =
                 new DefaultCategoryDataset();
 
-        dataset.addValue(1.0, Montag, Sebastian);
-        dataset.addValue(4.0, Dienstag, Sebastian);
-        dataset.addValue(2.0, Mittwoch, Sebastian);
-        dataset.addValue(6.0, Donnerstag, Sebastian);
-        dataset.addValue(12.0, Freitag, Sebastian);
-        dataset.addValue(3.0, Samstag, Sebastian);
-        dataset.addValue(9.0, Sonntag, Sebastian);
+        int[] values = get_values.values();
+        dataset.addValue(values[0], Montag, Sebastian);
+        dataset.addValue(values[1], Dienstag, Sebastian);
+        dataset.addValue(values[2], Mittwoch, Sebastian);
+        dataset.addValue(values[3], Donnerstag, Sebastian);
+        dataset.addValue(values[4], Freitag, Sebastian);
+        dataset.addValue(values[5], Samstag, Sebastian);
+        dataset.addValue(values[6], Sonntag, Sebastian);
 
         return dataset;
     }
 
     public static void main(String[] args) {
         commit_graph chart = new commit_graph("Commit Statistics",
-                "When Did i commit how often");
+                "When did I commit how often?");
         chart.pack();
         RefineryUtilities.centerFrameOnScreen(chart);
         chart.setVisible(true);
