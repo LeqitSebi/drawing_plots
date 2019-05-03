@@ -9,6 +9,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
 
+/**
+ * initialize general settings for the graph
+ */
 public class commit_graph extends ApplicationFrame {
 
     public commit_graph(String applicationTitle, String chartTitle) {
@@ -26,7 +29,13 @@ public class commit_graph extends ApplicationFrame {
         setContentPane(chartPanel);
     }
 
+    /**
+     * create all bars and get the value for each day
+     *
+     * @return dataset with all values
+     */
     private CategoryDataset createDataset() {
+        // all Days of the Week with corresponding shorts
         final String Montag = "MON";
         final String Dienstag = "TUE";
         final String Mittwoch = "WED";
@@ -34,6 +43,8 @@ public class commit_graph extends ApplicationFrame {
         final String Freitag = "FRI";
         final String Samstag = "SAT";
         final String Sonntag = "SON";
+
+        // String with username / can be expanded if necessary
         final String Sebastian = "Sebi";
 
         final DefaultCategoryDataset dataset =
