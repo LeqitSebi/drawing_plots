@@ -1,13 +1,15 @@
 package plots;
 
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
+import org.jfree.chart.*;
+import org.jfree.chart.entity.StandardEntityCollection;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * initialize general settings for the graph
@@ -26,6 +28,14 @@ public class commit_graph extends ApplicationFrame {
 
         ChartPanel chartPanel = new ChartPanel(barChart);
         chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
+        final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
+        // you can specify your own directory here
+        final File output = new File("/home/sebastian/Documents/SEW/commit_graphs/chart.png");
+        try {
+            ChartUtilities.saveChartAsPNG(output, barChart, 560, 367);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         setContentPane(chartPanel);
     }
 
